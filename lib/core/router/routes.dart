@@ -51,10 +51,7 @@ class EditTodoRoute extends GoRouteData {
     GoRouterState state,
   ) =>
       BottomSheetPage(
-        builder: (context) => BlocProvider.value(
-          value: sl<UpdateTodoItemBloc>(),
-          child: EditTodoItemScreen(itemId: todoId),
-        ),
+        builder: (context) => EditTodoItemScreen(itemId: todoId),
       );
 }
 
