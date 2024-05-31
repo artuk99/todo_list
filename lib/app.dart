@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:todo_list/core/router/routes.dart';
 import 'package:todo_list/core/theme/app_theme.dart';
+import 'package:todo_list/di.dart';
+import 'package:todo_list/feature/edit_todo/bloc/update_todo_item_bloc.dart';
 import 'package:todo_list/feature/todo_list/widget/todo_list_scope.dart';
 
 class App extends StatefulWidget {
@@ -36,7 +39,11 @@ class _AppState extends State<App> {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       debugShowCheckedModeBanner: false,
-      builder: (context, child) => TodoListScope(child: child!),
+      builder: (context, child) => TodoListScope(
+          child: BlocProvider.value(
+        value: sl<UpdateTodoItemBloc>(),
+        child: child!,
+      )),
     );
   }
 }
